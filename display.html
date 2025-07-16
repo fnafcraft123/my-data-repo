@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <p id="displayText">Loading...</p>
+  <script>
+    const repo = "YOUR_GITHUB_USERNAME/my-data-repo";
+    fetch(`https://api.github.com/repos/${repo}/contents/data.json`)
+      .then(res => res.json())
+      .then(data => {
+        const text = JSON.parse(atob(data.content)).text;
+        document.getElementById("displayText").textContent = text || "No data";
+      });
+  </script>
+</body>
+</html>
